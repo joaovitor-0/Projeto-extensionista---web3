@@ -1,50 +1,107 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>GAVIME - Grupo de Apoio Viver Melhor</title>
-		<meta charset = 'UTF-8'>
-		<link rel = 'stylesheet' href = 'style.css'>
-		<link rel = 'icon' href = 'icon.ico'>
-		<meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-	</head>
-	
-	<body id = 'topo'>
-		<header>
-			<div class = 'cabecalho'>
-				<a href = 'index.html'>
-					<img src = 'logoGavime.png' class = 'logo' alt = 'Logo GAVIME'>
-				</a>
-				
-				<nav>
-					<a href = 'index.html'>Apresentações</a>
-					<a href = 'doacoes.html'>Doações</a>
-					<a href = 'transparencia.html'>Transparência</a>
-					<a href = 'contato.html'>Contato</a>
-				</nav>
-			</div>
-		</header>
-        
-        <footer>
-			<div class="footerContainer">
-				<div class="footerLogo">
-					<a href="#topo">
-						<img src="logoGavime.png" class="logoFooter" alt="Logo GAVIME">
-					</a>
-				</div>
-
-				<p class="direitos">
-					©2026 - GAVIME. Todos os direitos reservados.
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>GAVIME - Contato</title>
+	<link rel="stylesheet" href="contato.css">
+	<link rel="icon" href="icon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body id="topo">
+	<header>
+		<div class="cabecalho">
+			<a href="index.html">
+				<img src="logoGavime.png" class="logo" alt="Logo GAVIME">
+			</a>
+			<nav>
+				<a href="doacoes.html">Doações</a>
+				<a href="transparencia.html">Prestação de Contas</a>
+				<a href="contato.html">Contato</a>
+			</nav>
+		</div>
+	</header>
+	<section class="contatoSection">
+		<div class="contatoContainer">
+			<div class="infoContato">
+				<h1>Contato</h1>
+				<p>
+					Av. Engenheiro Souza Filho, 1.207 - Casa 7c
 				</p>
-
-				<div class="redes">
-					<a href="https://www.facebook.com/p/Gavime-grupo-de-apoio-viver-melhor-100075482454614/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-					<a href="https://www.instagram.com/gavime.ong/reels/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-					<a href="https://www.threads.com/@gavime.ong" target="_blank"><i class="fa-brands fa-threads"></i></a>
-				</div>
-
+				<p>
+					Itanhangá, Rio de Janeiro - RJ, 22753-039
+				</p>
+				<p class="telefone">
+					+55 21 98284-3506
+				</p>
+				<a href="mailto:gavimegrupodeapoiovivermelhor@gmail.com"
+				class="emailContato">
+					gavimegrupodeapoiovivermelhor@gmail.com
+				</a>
 			</div>
-		</footer>
-		
-	</body>
+			<div class="formularioContato">
+				<form>
+					<div class="linhaForm">
+						<div class="campo">
+							<label>Nome (obrigatório)</label>
+							<input type="text" required>
+						</div>
+						<div class="campo">
+							<label>Sobrenome (obrigatório)</label>
+							<input type="text" required>
+						</div>
+					</div>
+					<div class="campo">
+						<label>E-mail (obrigatório)</label>
+						<input type="email" required>
+					</div>
+					<div class="campo">
+						<label>Assunto (obrigatório)</label>
+						<input type="text" required>
+					</div>
+					<div class="campo">
+						<label>Mensagem (obrigatório)</label>
+						<textarea required></textarea>
+					</div>
+					<button type="submit" class="botaoEnviar">
+						Enviar
+					</button>
+				</form>
+			</div>
+		</div>
+	</section>
+	<footer>
+		<div class="footerContainer">
+			<div class="footerLogo">
+				<a href="#topo">
+					<img src="logoGavime.png"
+					class="logoFooter"
+					alt="Logo GAVIME">
+				</a>
+			</div>
+			<p class="direitos">
+				©2026 - GAVIME. Todos os direitos reservados.
+			</p>
+			<div class="redes">
+				<a href="https://www.facebook.com/p/Gavime-grupo-de-apoio-viver-melhor-100075482454614/"
+				target="_blank">
+					<i class="fa-brands fa-facebook-f"></i>
+				</a>
+				<a href="https://www.linkedin.com/"
+				target="_blank">
+					<i class="fa-brands fa-linkedin"></i>
+				</a>
+				<a href="https://www.youtube.com/"
+				target="_blank">
+					<i class="fa-brands fa-youtube"></i>
+				</a>
+				<a href="https://www.instagram.com/gavime.ong/reels/"
+				target="_blank">
+					<i class="fa-brands fa-instagram"></i>
+				</a>
+			</div>
+		</div>
+	</footer>
+</body>
 </html>
