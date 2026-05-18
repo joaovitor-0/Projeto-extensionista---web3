@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>GAVIME - Contato</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="icon" href="{% static 'img/icon.ico' %}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body id="topo">
+
+<header>
+	<div class="cabecalho">
+		<a href="/">
+			<img src="{% static 'img/logoGavime.png' %}" class="logo">
+		</a>
+
+		<nav>
+			<a href="/">Apresentações</a>
+			<a href="/doacoes/">Doações</a>
+			<a href="/transparencia/">Transparência</a>
+			<a href="/contato/">Contato</a>
+		</nav>
+	</div>
+</header>
+
+<section class="contatoSection">
+	<div class="contatoContainer">
+
+		<div class="infoContato">
+			<h1>Contato</h1>
+
+			<p>Av. Engenheiro Souza Filho, 1.207 - Casa 7c</p>
+			<p>Itanhangá, Rio de Janeiro - RJ</p>
+			<p class="telefone">+55 21 98284-3506</p>
+
+			<a href="mailto:gavimegrupodeapoiovivermelhor@gmail.com"
+			   class="emailContato">
+				gavimegrupodeapoiovivermelhor@gmail.com
+			</a>
+		</div>
+
+		<div class="formularioContato">
+			<form>
+				<div class="linhaForm">
+					<div class="campo">
+						<label>Nome</label>
+						<input type="text">
+					</div>
+
+					<div class="campo">
+						<label>Sobrenome</label>
+						<input type="text">
+					</div>
+				</div>
+
+				<div class="campo">
+					<label>Email</label>
+					<input type="email">
+				</div>
+
+				<div class="campo">
+					<label>Assunto</label>
+					<input type="text">
+				</div>
+
+				<div class="campo">
+					<label>Mensagem</label>
+					<textarea></textarea>
+				</div>
+
+				<button class="botaoEnviar">Enviar</button>
+			</form>
+		</div>
+
+	</div>
+</section>
+
+<footer>
+	<div class="footerContainer">
+
+		<img src="{% static 'img/logoGavime.png' %}" class="logoFooter">
+
+		<p class="direitos">©2026 - GAVIME. Todos os direitos reservados.</p>
+
+		<div class="redes">
+			<a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+			<a href="#"><i class="fa-brands fa-instagram"></i></a>
+			<a href="#"><i class="fa-brands fa-threads"></i></a>
+		</div>
+
+	</div>
+</footer>
+
+</body>
+</html>
