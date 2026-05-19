@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>GAVIME - Transparência</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="icon" href="{% static 'img/icon.ico' %}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body id="topo">
+
+<header>
+	<div class="cabecalho">
+		<a href="/">
+			<img src="{% static 'img/logoGavime.png' %}" class="logo">
+		</a>
+
+		<nav>
+			<a href="/">Apresentações</a>
+			<a href="/doacoes/">Doações</a>
+			<a href="/transparencia/">Transparência</a>
+			<a href="/contato/">Contato</a>
+		</nav>
+	</div>
+</header>
+
+<section class="containerTransparencia">
+
+	<div class="colunaTexto">
+
+		<div class="caixas">
+			<p>Total arrecadado:<br>R$ 9999,99</p>
+		</div>
+
+		<div class="caixas">
+			<p>
+				Gastos:<br>
+				R$ 423,32 - Roupas<br>
+				R$ 321,80 - Oficina<br>
+				R$ 255,12 - Outros
+			</p>
+		</div>
+
+	</div>
+
+	<div class="colunaImagem">
+		<img src="{% static 'img/coluna-imagem.jpg' %}" alt="">
+	</div>
+
+</section>
+
+<footer>
+	<div class="footerContainer">
+
+		<img src="{% static 'img/logoGavime.png' %}" class="logoFooter">
+
+		<p class="direitos">©2026 - GAVIME. Todos os direitos reservados.</p>
+
+		<div class="redes">
+			<a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+			<a href="#"><i class="fa-brands fa-instagram"></i></a>
+			<a href="#"><i class="fa-brands fa-threads"></i></a>
+		</div>
+
+	</div>
+</footer>
+
+</body>
+</html>
