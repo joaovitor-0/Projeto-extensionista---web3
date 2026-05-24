@@ -1,0 +1,71 @@
+<{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Transparência</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'img/icon.ico' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<header>
+    <div class="cabecalho">
+        <a href="/funcionarios/">
+            <img src="{% static 'img/logoGavime.png' %}" class="logo" alt="Logo GAVIME">
+        </a>
+
+        <nav>
+            <a href="/funcionarios/">Painel</a>
+            <a href="/funcionarios/atividades/">Ações</a>
+            <a href="/funcionarios/inscritos/">Inscritos</a>
+            <a href="/funcionarios/voluntarios/">Voluntários</a>
+            <a href="/funcionarios/despesas/">Transparência</a>
+            <a href="/">Site Principal</a>
+        </nav>
+    </div>
+</header>
+
+<section class="topoPainel">
+    <h1>Editar Transparência</h1>
+</section>
+
+<main class="conteudoPainel">
+    <section class="cardPainel">
+        <h2>Editar registro</h2>
+
+        <form method="POST" class="formPainel">
+            {% csrf_token %}
+
+            <label>Descrição:</label>
+            <input type="text" name="descricao" value="{{ registro.descricao }}" required>
+
+            <label>Tipo:</label>
+            <select name="tipo" required>
+                <option value="Despesa" {% if registro.tipo == 'Despesa' %}selected{% endif %}>Despesa</option>
+                <option value="Arrecadação em dinheiro" {% if registro.tipo == 'Arrecadação em dinheiro' %}selected{% endif %}>Arrecadação em dinheiro</option>
+                <option value="Arrecadação de item" {% if registro.tipo == 'Arrecadação de item' %}selected{% endif %}>Arrecadação de item</option>
+            </select>
+
+            <label>Valor (R$):</label>
+            <input type="number" name="valor" step="0.01" value="{{ registro.valor }}">
+
+            <label>Quantidade:</label>
+            <input type="number" name="quantidade" value="{{ registro.quantidade }}">
+
+            <label>Data:</label>
+            <input type="date" name="data" value="{{ registro.data|date:'Y-m-d' }}" required>
+
+            <label class="checkboxPainel">
+                <input type="checkbox" name="exibir_no_site" {% if registro.exibir_no_site %}checked{% endif %}>
+                Exibir no site
+            </label>
+
+            <button type="submit" class="botaoPainel">Salvar alterações</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>

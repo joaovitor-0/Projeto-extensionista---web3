@@ -1,0 +1,193 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>GAVIME - Gerenciar Ações</title>
+		<meta charset = 'UTF-8'>
+		<link rel = "stylesheet" href = "{% static 'css/style.css' %}">
+		<link rel = "icon" href = "{% static 'img/icon.ico' %}">
+		<meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
+	</head>
+
+	<body id = 'topo'>
+
+		<header>
+			<div class = 'cabecalho'>
+
+				<a href = "/funcionarios/">
+					<img src = "{% static 'img/logoGavime.png' %}" class = 'logo' alt = 'Logo GAVIME'>
+				</a>
+
+				<nav>
+					<a href = "/funcionarios/">Painel</a>
+					<a href = "/funcionarios/atividades/">Ações</a>
+					<a href = "/funcionarios/inscritos/">Inscritos</a>
+					<a href = "/funcionarios/voluntarios/">Voluntários</a>
+					<a href="/funcionarios/despesas/">Transparência</a>
+					<a href = "/">Site principal</a>
+				</nav>
+
+			</div>
+		</header>
+
+		<section class = 'conteudo'>
+
+			<div class = 'topoPainel'>
+				<h1>Gerenciar ações</h1>
+			</div>
+
+			<h1>Cadastrar nova ação</h1>
+
+			<form class = 'formularioPagina' method = 'POST'>
+
+				{% csrf_token %}
+
+				<div class = 'campo'>
+					<label>Nome da ação</label>
+					<input type = 'text' name = 'nome_atividade' required>
+				</div>
+
+				<div class = 'campo'>
+					<label>Descrição</label>
+					<textarea name = 'descricao'></textarea>
+				</div>
+
+				<div class = 'campo'>
+					<label>Data da ação</label>
+					<input type = 'date' name = 'data_atividade'>
+				</div>
+
+				<div class = 'campo'>
+					<label>Local da ação</label>
+					<input type = 'text' name = 'local_atividade'>
+				</div>
+
+				<div class = 'campo'>
+					<label>Quantidade de vagas</label>
+					<input type = 'number' name = 'quantidade_vagas'>
+				</div>
+
+				<div class = 'campo'>
+					<label>Status da ação</label>
+
+					<select name = 'status_atividade' required>
+						<option value = ''>Selecione</option>
+						<option value = 'Aberta'>
+							Aberta
+						</option>
+						<option value = 'Em andamento'>
+							Em andamento
+						</option>
+						<option value = 'Encerrada'>
+							Encerrada
+						</option>
+					</select>
+
+				</div>
+
+				<button class = 'botaoEnviar' type = 'submit'>
+					Cadastrar ação
+				</button>
+			</form>
+
+			<h1>Ações cadastradas</h1>
+			<div class = 'areaTabelaFuncionarios'>
+
+				<form class = 'formularioFiltrosTabela' method = 'GET'>
+					<input type = 'text' name = 'filtro_nome' placeholder = 'Nome da ação' value = '{{ filtro_nome }}'>
+					<input type = 'date' name = 'filtro_data' value = '{{ filtro_data }}'>
+					<input type = 'text' name = 'filtro_local' placeholder = 'Local' value = '{{ filtro_local }}'>
+					<input type = 'number' name = 'filtro_vagas' placeholder = 'Vagas' value = '{{ filtro_vagas }}'>
+					<select name = 'filtro_status'>
+
+						<option value = ''>
+							Todos os status
+						</option>
+
+						<option value = 'Aberta' {% if filtro_status == 'Aberta' %}selected{% endif %} >
+							Aberta
+						</option>
+
+						<option value = 'Em andamento' {% if filtro_status == 'Em andamento' %}selected{% endif %} >
+							Em andamento
+						</option>
+
+						<option value = 'Encerrada' {% if filtro_status == 'Encerrada' %}selected{% endif %}>
+							Encerrada
+						</option>
+
+					</select>
+
+					<button type = 'submit'>
+						Filtrar
+					</button>
+
+					<a href = '/funcionarios/atividades/'>
+						Limpar
+					</a>
+				</form>
+
+				<input type = 'hidden' id = 'atividadeSelecionada'>
+				<div class = 'tabelaContainer'>
+
+					<table class = 'tabelaFuncionarios'>
+						<tr>
+							<th>Código</th>
+							<th>Nome</th>
+							<th>Data</th>
+							<th>Local</th>
+							<th>Vagas</th>
+							<th>Status</th>
+
+						</tr>
+
+						{% for atividade in atividades %}
+							<tr class = 'linhaAtividade' onclick = 'selecionarAtividade(this, "{{ atividade.id }}")'>
+								<td>{{ atividade.id }}</td>
+								<td>{{ atividade.nome_atividade }}</td>
+								<td>{{ atividade.data_atividade|date:"d/m/Y" }}</td>
+								<td>{{ atividade.local_atividade }}</td>
+								<td>{{ atividade.quantidade_vagas }}</td>
+								<td>{{ atividade.status_atividade }}</td>
+							</tr>
+
+						{% empty %}
+							<tr>
+								<td colspan = '6'>
+									Nenhuma ação cadastrada.
+								</td>
+							</tr>
+						{% endfor %}
+					</table>
+				</div>
+
+				<div class = 'botoesAcaoTabela'>
+					<button class = 'botaoEditarSelecionado' type = 'button' onclick = 'editarSelecionado()'>
+						Editar selecionada
+					</button>
+
+					<button class = 'botaoExcluirSelecionado' type = 'button' onclick = 'excluirSelecionado()'>
+						Excluir selecionada
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<footer>
+			<div class="footerContainerFuncionarios">
+				<div class="footerLogo">
+					<a href="#topo">
+						<img src="{% static 'img/logoGavime.png' %}" class="logoFooter" alt="Logo GAVIME">
+					</a>
+				</div>
+
+				<p class="direitos">
+					©2026 - GAVIME. Todos os direitos reservados.
+				</p>
+			</div>
+		</footer>
+
+		<script src = "{% static 'js/atividades.js' %}"></script>
+	</body>
+</html>
