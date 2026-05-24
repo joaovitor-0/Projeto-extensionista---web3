@@ -1,0 +1,95 @@
+@ -0,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Gavime - Controle de Despesas</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel = 'icon' href = 'icon.ico'>
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+<header>
+  <div class = 'cabecalho'>
+    <a href = 'index.html'>
+	  <img src = 'logoGavime.png' class = 'logo' alt = 'Logo GAVIME'>
+	</a>
+    <nav>
+      <a href = 'index.html'>Apresentações</a>
+	  <a href = 'doacoes.html'>Doações</a>
+	  <a href = 'transparencia.html'>Transparência</a>
+	  <a href = 'contato.html'>Contato</a>
+      <a href = 'inscricao.html'>Seja Voluntário</a>
+	</nav>
+  </div>
+
+</header>
+  <section class="secaoInscricao">
+    <div class="containerInscricao">
+      <h2>Controle de Despesas</h2>
+
+            {% if messages %}
+                {% for message in messages %}
+        <p style="color: #c40000; text-align: center; font-weight: bold;">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+      <div>
+        <form method="POST" action="{% url 'despesas' %}">
+                    {% csrf_token %}
+          <div class="campo">
+            <label>Nome da Despesa:</label>
+            <input type="text" name="nome" placeholder="Ex: Conta de Luz" required>
+          </div>
+
+          <div class="campo">
+            <label>Preço (R$):</label>
+            <input type="number" name="preco" step="0.01" placeholder="0.00" required>
+          </div>
+
+          <div class="campo">
+            <label>Data:</label>
+            <input type="date" name="data" required>
+          </div>
+
+          <button type="submit" class="botaoEnviar">Adicionar</button>
+        </form>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Data</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for despesa in despesas %}
+        <tr>
+            <td>{{ despesa.0 }}</td>
+            <td>{{ despesa.1 }}</td>
+            <td>R$ {{ despesa.2|floatformat:2 }}</td>
+            <td>{{ despesa.3|date:"d/m/Y" }}</td>
+            <td>
+              <a href="{% url 'remover_despesa' despesa.0 %}"
+                style="color: white; background: #c40000; padding: 8px 12px; text-decoration: none; border-radius: 6px; font-size: 13px; font-weight: bold;"
+                onclick="return confirm('Tem certeza que deseja apagar esta despesa?');">
+                Remover
+              </a>
+            </td>
+          </tr>
+            {% empty %}
+        <tr>
+          <td colspan="5">Nenhuma despesa registrada.</td>
+        </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</body>
+</html>
