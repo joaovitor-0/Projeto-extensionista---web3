@@ -28,16 +28,12 @@
 
             <div class="formularioInscricao">
                 <h2>Seja um Voluntário!</h2>
-                {% if messages %}
-                    {% for message in messages %}
-                        <p style="color: #c40000; text-align: center; font-weight: bold;">{{ message }}</p>
-                    {% endfor %}
-                {% endif %}
 
-				<form method="POST" action="{% url 'inscricao' %}">
-					{% csrf_token %} <div class="campo">
-						<label for="nome">Nome Completo:</label>
-						<input type="text" id="nome" name="nome" required>
+                <form method="POST" action="{% url 'inscricao' %}">
+
+                    <div class="campo">
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" id="nome" name="nome" required>
                     </div>
 
                     <div class="campo">
