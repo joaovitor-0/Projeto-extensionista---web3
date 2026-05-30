@@ -1184,15 +1184,46 @@ footer{
 	color:#4a4a4a;
 }
 
+*{
+	box-sizing:border-box;
+}
+
+img{
+	max-width:100%;
+	height:auto;
+}
+
+body{
+	overflow-x:hidden;
+}
+
 @media(max-width:768px){
+
+	*{
+		box-sizing:border-box;
+	}
+
+	body{
+		overflow-x:hidden;
+	}
+
+	img{
+		max-width:100%;
+		height:auto;
+	}
+
 	header{
 		height:auto;
 		padding:20px 0;
+		width:100%;
+		overflow:hidden;
 	}
 
 	.cabecalho{
 		flex-direction:column;
 		gap:25px;
+		width:100%;
+		padding:0 15px;
 	}
 
 	.logo{
@@ -1202,6 +1233,42 @@ footer{
 	nav{
 		flex-direction:column;
 		gap:15px;
+		width:100%;
+	}
+
+	.linksMenu{
+		width:100%;
+		flex-wrap:wrap;
+		justify-content:center;
+		gap:15px;
+	}
+
+	.linksMenu a,
+	nav > a{
+		font-size:12px;
+		letter-spacing:2px;
+		text-align:center;
+	}
+
+	.acoesMenu{
+		width:100%;
+		max-width:450px;
+	}
+
+	.botaoMenu{
+		flex:1;
+		text-align:center;
+		padding:14px 10px;
+		font-size:12px;
+	}
+
+	.secao1,
+	.secao2,
+	.secao3,
+	.secaoInscricao,
+	.secaoFuncionarios{
+		height:500px;
+		background-position:center;
 	}
 
 	.tituloImagem h2{
@@ -1209,12 +1276,7 @@ footer{
 	}
 
 	.conteudo{
-		width:85%;
-	}
-
-	.footerContainer{
-		flex-direction:column;
-		text-align:center;
+		width:90%;
 	}
 
 	.contatoContainer{
@@ -1236,10 +1298,6 @@ footer{
 		width:100%;
 	}
 
-	.secaoInscricao{
-		height:500px;
-	}
-
 	.formularioPagina{
 		padding:25px;
 	}
@@ -1253,21 +1311,15 @@ footer{
 		width:100%;
 	}
 
-	.secaoFuncionarios{
-		height:500px;
-	}
-
 	.painelFuncionarios{
 		grid-template-columns:1fr;
 	}
 
-	.tabelaFuncionarios th,
-	.tabelaFuncionarios td{
-		padding:12px;
-		font-size:13px;
+	.formularioFiltros{
+		grid-template-columns:1fr;
 	}
 
-	.formularioFiltros{
+	.formularioFiltrosTabela{
 		grid-template-columns:1fr;
 	}
 
@@ -1278,25 +1330,68 @@ footer{
 
 	.botaoLimpar,
 	.botaoEditarSelecionado,
-	.botaoExcluirSelecionado{
+	.botaoExcluirSelecionado,
+	.botaoPainel{
 		width:100%;
 	}
 
 	.cardPainel{
 		padding:20px;
+		width:100%;
+		overflow:hidden;
 	}
 
 	.cardPainel h2{
 		font-size:22px;
 	}
 
-	.tabelaPainel{
-		display:block;
-		overflow-x:auto;
+	.conteudoPainel{
+		width:100%;
+		padding:0 15px;
 	}
 
-	.botaoPainel{
+	.tabelaContainer{
 		width:100%;
+		overflow-x:auto;
+		-webkit-overflow-scrolling:touch;
+	}
+
+	.tabelaFuncionarios,
+	.tabelaPainel{
+		min-width:700px;
+	}
+
+	.tabelaFuncionarios th,
+	.tabelaFuncionarios td{
+		padding:12px;
+		font-size:13px;
+	}
+
+	.containerTransparencia{
+		flex-direction:column;
+		width:100%;
+		padding:30px 15px;
+	}
+
+	.colunaTexto{
+		width:100%;
+	}
+
+	.colunaImagem{
+		width:100%;
+	}
+
+	.colunaImagem img{
+		width:100%;
+		height:auto;
+	}
+
+	.caixas{
+		min-height:180px;
+	}
+
+	.caixas p{
+		font-size:28px;
 	}
 
 	.cardDoacao{
@@ -1319,5 +1414,52 @@ footer{
 
 	.qrContainer img{
 		width:220px;
+	}
+
+	.newsletterContainer{
+		width:90%;
+	}
+
+	.topoPainel h1{
+		font-size:26px;
+		text-align:center;
+	}
+
+	.navFuncionarios{
+		gap:15px;
+	}
+
+	.footerContainer{
+		flex-direction:column;
+		text-align:center;
+		padding:20px;
+	}
+
+	.footerContainerFuncionarios{
+		display:flex;
+		flex-direction:column;
+		text-align:center;
+		gap:15px;
+		padding:20px;
+	}
+
+	.footerContainerFuncionarios .footerLogo{
+		justify-content:center;
+	}
+
+	.logoFooter{
+		width:220px;
+	}
+
+	.direitos,
+	.footerContainerFuncionarios .direitos{
+		min-width:0;
+		width:100%;
+		text-align:center;
+		font-size:13px;
+	}
+
+	.redes{
+		justify-content:center;
 	}
 }
