@@ -1377,14 +1377,16 @@ body{
 	}
 
 	.tabelaContainer{
-		width:100%;
-		overflow-x:auto;
-		-webkit-overflow-scrolling:touch;
+	width:100%;
+	max-width:100%;
+	overflow-x:auto;
+	-webkit-overflow-scrolling:touch;
 	}
 
 	.tabelaFuncionarios,
 	.tabelaPainel{
-		min-width:700px;
+		width:100%;
+		min-width:520px;
 	}
 
 	.tabelaFuncionarios th,
