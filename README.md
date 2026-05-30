@@ -10,6 +10,10 @@ O objetivo do sistema é aumentar a visibilidade da ONG e facilitar o acesso às
 
 - Django — Framework web responsável pela construção do backend e disponibilização das APIs.
 
-- MySQL — Banco de dados relacional utilizado para armazenamento e gerenciamento das informações.
+- MySQL — Utilizado na modelagem inicial e testes do banco de dados.
+
+- SQLite — Banco de dados utilizado na versão atual da aplicação através da configuração padrão do Django.
 
 ## Como executar
+
+###Requisitos
