@@ -1224,6 +1224,20 @@ body{
 	max-width:100%;
 }
 
+.checkboxCampo label{
+	display:flex;
+	align-items:center;
+	gap:10px;
+	cursor:pointer;
+}
+
+.checkboxCampo input[type="checkbox"]{
+	width:auto;
+	height:auto;
+	margin:0;
+	box-shadow:none;
+}
+
 @media(max-width:768px){
 
 	*{
