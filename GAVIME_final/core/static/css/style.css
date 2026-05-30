@@ -1224,40 +1224,29 @@ body{
 	max-width:100%;
 }
 
-.checkboxCampo label{
-	display:flex;
-	align-items:center;
-	gap:10px;
-	cursor:pointer;
-}
-
-.checkboxCampo input[type="checkbox"]{
-	width:auto;
-	height:auto;
-	margin:0;
-	box-shadow:none;
-}
-
-.formularioPagina .checkboxCampo{
+.checkboxCampo{
 	margin-bottom:30px;
 }
 
-.formularioPagina .checkboxCampo label{
+.checkboxCampo label{
 	display:flex;
 	align-items:center;
+	justify-content:flex-start;
 	gap:10px;
-	cursor:pointer;
 	font-size:15px;
 	color:#222;
-	margin-bottom:0;
+	cursor:pointer;
+	margin:0;
 }
 
-.formularioPagina .checkboxCampo input[type="checkbox"]{
+.checkboxCampo input[type="checkbox"]{
 	width:18px !important;
 	height:18px !important;
+	min-width:18px;
+	max-width:18px;
 	margin:0;
 	padding:0;
-	box-shadow:none;
+	box-shadow:none !important;
 	border-radius:0;
 }
 
