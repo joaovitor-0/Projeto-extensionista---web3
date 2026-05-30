@@ -1197,6 +1197,32 @@ body{
 	overflow-x:hidden;
 }
 
+.conteudoPainel{
+	max-width:1200px;
+	width:100%;
+	margin:40px auto;
+	padding:0 20px;
+	box-sizing:border-box;
+	overflow:hidden;
+}
+
+.cardPainel{
+	width:100%;
+	box-sizing:border-box;
+	overflow:hidden;
+}
+
+.formPainel{
+	width:100%;
+}
+
+.formPainel input,
+.formPainel select,
+.formPainel textarea{
+	width:100%;
+	max-width:100%;
+}
+
 @media(max-width:768px){
 
 	*{
@@ -1461,5 +1487,21 @@ body{
 
 	.redes{
 		justify-content:center;
+	}
+
+	.conteudoPainel{
+	padding:0 15px;
+	}
+
+	.cardPainel{
+		padding:20px;
+		width:100%;
+		max-width:100%;
+	}
+
+	.formPainel input,
+	.formPainel select,
+	.formPainel textarea{
+		max-width:100%;
 	}
 }
