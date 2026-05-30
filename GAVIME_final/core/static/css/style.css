@@ -1223,6 +1223,47 @@ body{
 	max-width:100%;
 }
 
+.paginaTransparenciaFuncionarios .conteudoPainel{
+	max-width:1200px;
+	width:100%;
+	margin:40px auto;
+	padding:0 20px;
+	box-sizing:border-box;
+}
+
+.paginaTransparenciaFuncionarios .topoPainel,
+.paginaTransparenciaFuncionarios .cardPainel,
+.paginaTransparenciaFuncionarios .areaTabelaFuncionarios{
+	width:100%;
+	max-width:100%;
+	box-sizing:border-box;
+}
+
+.paginaTransparenciaFuncionarios .tabelaContainer{
+	width:100%;
+	max-width:100%;
+	overflow-x:auto;
+}
+
+@media(max-width:768px){
+	.paginaTransparenciaFuncionarios .conteudoPainel{
+		padding:0 15px;
+		margin:25px auto;
+	}
+
+	.paginaTransparenciaFuncionarios .topoPainel,
+	.paginaTransparenciaFuncionarios .cardPainel{
+		padding-left:20px;
+		padding-right:20px;
+	}
+
+	.paginaTransparenciaFuncionarios .tabelaPainel,
+	.paginaTransparenciaFuncionarios .tabelaFuncionarios{
+		width:100%;
+		min-width:520px;
+	}
+}
+
 @media(max-width:768px){
 
 	*{
