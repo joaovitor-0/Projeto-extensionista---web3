@@ -17,3 +17,52 @@ O objetivo do sistema é aumentar a visibilidade da ONG e facilitar o acesso às
 ## Como executar
 
 ### Requisitos
+
+- Python 3.13 ou superior
+- Django
+
+### Instalação
+
+No terminal do PyCharm ou da IDE utilizada, instale o Django.
+
+Comando:
+
+```bash
+pip install django
+```
+
+### Banco de Dados
+
+Execute as migrações para criar as tabelas do sistema.
+
+Comando:
+
+```bash
+python manage.py migrate
+```
+
+### Execução
+
+Inicie o servidor local.
+
+Comando:
+
+```bash
+python manage.py runserver
+```
+
+Após iniciar o servidor, acesse:
+
+```text
+http://127.0.0.1:8000/
+```
+
+### Área de Funcionários
+
+Área restrita para funcionários, onde é possível consultar e alterar os dados do sistema, além de controlar a exibição das informações de transparência no site.
+
+Acesso através do sistema de login:
+
+```text
+http://127.0.0.1:8000/login/
+```
