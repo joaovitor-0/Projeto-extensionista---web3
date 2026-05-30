@@ -1,0 +1,140 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Área dos Funcionários - Transparência</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'img/icon.ico' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<header>
+    <div class="cabecalho">
+        <a href="/funcionarios/">
+            <img src="{% static 'img/logoGavime.png' %}" class="logo" alt="Logo GAVIME">
+        </a>
+
+        <nav>
+            <a href="/funcionarios/">Painel</a>
+            <a href="/funcionarios/atividades/">Ações</a>
+            <a href="/funcionarios/inscritos/">Inscritos</a>
+            <a href="/funcionarios/voluntarios/">Voluntários</a>
+            <a href="/funcionarios/despesas/">Transparência</a>
+            <a href="/">Site Principal</a>
+        </nav>
+    </div>
+</header>
+
+<section class="topoPainel">
+    <h1>Gerenciar Transparência</h1>
+</section>
+
+<main class="conteudoPainel">
+    <section class="cardPainel">
+        <h2>Controle de Transparência</h2>
+
+        <form method="POST" class="formPainel">
+            {% csrf_token %}
+
+            <label>Descrição:</label>
+            <input type="text" name="descricao" placeholder="Ex: Conta de luz, roupas, doação" required>
+
+            <label>Tipo:</label>
+            <select name="tipo" required>
+                <option value="Despesa">Despesa</option>
+                <option value="Arrecadação em dinheiro">Arrecadação em dinheiro</option>
+                <option value="Arrecadação de item">Arrecadação de item</option>
+            </select>
+
+            <label>Valor (R$):</label>
+            <input type="number" name="valor" step="0.01" placeholder="0.00">
+
+            <label>Quantidade:</label>
+            <input type="number" name="quantidade" placeholder="Ex: 10">
+
+            <label>Data:</label>
+            <input type="date" name="data" required>
+
+            <label class="checkboxPainel">
+                <input type="checkbox" name="exibir_no_site" checked>
+                Exibir no site
+            </label>
+
+            <button type="submit" class="botaoPainel">Adicionar</button>
+        </form>
+    </section>
+
+    <section class="cardPainel">
+        <h2>Registros cadastrados</h2>
+
+        <table class="tabelaPainel">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descrição</th>
+                    <th>Tipo</th>
+                    <th>Valor</th>
+                    <th>Quantidade</th>
+                    <th>Data</th>
+                    <th>Exibir</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for despesa in despesas %}
+                <tr class="linhaTransparencia" data-editar="/funcionarios/despesas/editar/{{ despesa.id }}/" data-excluir="/funcionarios/despesas/excluir/{{ despesa.id }}/">
+                    <td>{{ despesa.id }}</td>
+                    <td>{{ despesa.descricao }}</td>
+                    <td>{{ despesa.tipo }}</td>
+
+                    <td>
+                        {% if despesa.valor %}
+                            R$ {{ despesa.valor }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if despesa.quantidade %}
+                            {{ despesa.quantidade }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+
+                    <td>{{ despesa.data|date:"d/m/Y" }}</td>
+
+                    <td>
+                        {% if despesa.exibir_no_site %}
+                            Sim
+                        {% else %}
+                            Não
+                        {% endif %}
+                    </td>
+                </tr>
+
+                {% empty %}
+                <tr>
+                    <td colspan="7">Nenhum registro cadastrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="botoesAcaoTabela">
+            <button type="button" class="botaoEditarSelecionado" id="editarTransparencia">Editar registro selecionado</button>
+            <button type="button" class="botaoExcluirSelecionado" id="excluirTransparencia">Remover registro selecionado</button>
+        </div>
+    </section>
+</main>
+
+<script src="{% static 'js/transparencia.js' %}"></script>
+
+</body>
+</html>
