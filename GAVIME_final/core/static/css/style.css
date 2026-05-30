@@ -1238,6 +1238,29 @@ body{
 	box-shadow:none;
 }
 
+.formularioPagina .checkboxCampo{
+	margin-bottom:30px;
+}
+
+.formularioPagina .checkboxCampo label{
+	display:flex;
+	align-items:center;
+	gap:10px;
+	cursor:pointer;
+	font-size:15px;
+	color:#222;
+	margin-bottom:0;
+}
+
+.formularioPagina .checkboxCampo input[type="checkbox"]{
+	width:18px !important;
+	height:18px !important;
+	margin:0;
+	padding:0;
+	box-shadow:none;
+	border-radius:0;
+}
+
 @media(max-width:768px){
 
 	*{
