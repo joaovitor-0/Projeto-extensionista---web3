@@ -1250,6 +1250,12 @@ body{
 	border-radius:0;
 }
 
+.emailTitulo {
+	margin-top: 15px;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
 @media(max-width:768px){
 
 	*{
