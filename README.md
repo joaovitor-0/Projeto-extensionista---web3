@@ -24,13 +24,13 @@ https://gavime.org
 - Gerenciamento das informações de transparência exibidas no site.
 
 ## Tecnologias Utilizadas
-Python — Linguagem principal utilizada no desenvolvimento da aplicação e na implementação das regras de negócio.
-Django — Framework web utilizado para o desenvolvimento do sistema.
-HTML e CSS — Utilizados na construção e estilização das páginas do sistema.
-MySQL — Utilizado na modelagem inicial e nos testes do banco de dados.
-SQLite — Banco de dados utilizado na versão final da aplicação.
-GitHub — Utilizado para versionamento e armazenamento do código-fonte.
-Render — Plataforma utilizada para hospedagem e disponibilização do site.
+- Python — Linguagem principal utilizada no desenvolvimento da aplicação e na implementação das regras de negócio.
+- Django — Framework web utilizado para o desenvolvimento do sistema.
+- HTML e CSS — Utilizados na construção e estilização das páginas do sistema.
+- MySQL — Utilizado na modelagem inicial e nos testes do banco de dados.
+- SQLite — Banco de dados utilizado na versão final da aplicação.
+- GitHub — Utilizado para versionamento e armazenamento do código-fonte.
+- Render — Plataforma utilizada para hospedagem e disponibilização do site.
 
 ### Como executar
 
