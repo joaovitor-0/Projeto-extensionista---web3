@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>GAVIME - Editar Voluntário</title>
+		<meta charset = 'UTF-8'>
+		<link rel = "stylesheet" href = "{% static 'css/style.css' %}">
+		<link rel = "icon" href = "{% static 'img/icon.ico' %}">
+		<meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
+	</head>
+
+	<body id = 'topo'>
+		<header>
+			<div class = 'cabecalho'>
+				<a href = "/funcionarios/">
+					<img src = "{% static 'img/logoGavime.png' %}" class = 'logo' alt = 'Logo GAVIME'>
+				</a>
+
+				<nav>
+					<a href = "/funcionarios/">Painel</a>
+					<a href = "/funcionarios/atividades/">Ações</a>
+					<a href = "/funcionarios/inscritos/">Inscritos</a>
+					<a href = "/funcionarios/voluntarios/">Voluntários</a>
+					<a href="/funcionarios/despesas/">Transparência</a>
+					<a href = "/funcionarios/newsletter/">Newsletter</a>
+                    <a href="/funcionarios/banners/">Banners</a>
+                    <a href="/funcionarios/campanhas/">Campanhas</a>
+					<a href = "/">Site principal</a>
+				</nav>
+			</div>
+		</header>
+
+		<section class = 'conteudo'>
+			<div class = 'topoPainel'>
+				<h1>Editar voluntário</h1>
+			</div>
+
+			<h1>Alterar vínculo</h1>
+			<form class = 'formularioPagina' method = 'POST' onsubmit = 'return confirmarAlteracaoVoluntario()'>
+				{% csrf_token %}
+
+				<div class = 'campo'>
+					<label>Inscrito</label>
+
+					<select name = 'inscrito' required>
+						{% for inscrito in inscritos %}
+							<option value = '{{ inscrito.id }}' {% if participacao.voluntario.id == inscrito.id %}selected{% endif %}>
+								{{ inscrito.nome }} - {{ inscrito.email }}
+							</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<div class = 'campo'>
+					<label>Ação</label>
+
+					<select name = 'atividade' required>
+						{% for atividade in atividades %}
+							<option value = '{{ atividade.id }}' {% if participacao.atividade.id == atividade.id %}selected{% endif %}>
+								{{ atividade.nome_atividade }} - {{ atividade.data_atividade|date:"d/m/Y" }}
+							</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<button class = 'botaoEnviar' type = 'submit'>
+					Salvar alterações
+				</button>
+			</form>
+		</section>
+
+        <footer>
+			<div class="footerContainerFuncionarios">
+				<div class="footerLogo">
+					<a href="#topo">
+						<img src="{% static 'img/logoGavime.png' %}" class="logoFooter" alt="Logo GAVIME">
+					</a>
+				</div>
+
+				<p class="direitos">
+					©2026 - GAVIME. Todos os direitos reservados.
+				</p>
+			</div>
+		</footer>
+
+		<script src = "{% static 'js/voluntarios.js' %}"></script>
+	</body>
+</html>
