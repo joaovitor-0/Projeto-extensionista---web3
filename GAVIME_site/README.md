@@ -1,1 +1,31 @@
+# GAVIME Site — Versão Final
 
+Esta pasta contém a versão final e atualizada do sistema web desenvolvido para a ONG Grupo de Apoio Viver Melhor (GAVIME).
+
+O sistema teve origem em um projeto acadêmico e, após sua conclusão, continuou sendo desenvolvido para atender às necessidades da organização. Esta versão incorpora as melhorias e novas funcionalidades implementadas posteriormente.
+
+Entre as principais funcionalidades estão:
+- Área restrita para funcionários;
+- Gerenciamento de atividades;
+- Gerenciamento de inscritos e voluntários;
+- Cadastro e gerenciamento de campanhas;
+- Sistema de banners configuráveis;
+- Gerenciamento das informações de transparência;
+- Página de doações;
+- Formulários de contato e inscrição;
+- Gerenciamento do conteúdo exibido no site.
+
+O projeto foi desenvolvido utilizando Python e Django, com SQLite como banco de dados, GitHub para versionamento do código e Render para hospedagem.
+
+## Site
+A versão final do site está disponível em:
+
+https://gavime.org
+
+## Versão Acadêmica
+A versão original, desenvolvida durante o projeto acadêmico, foi preservada e pode ser encontrada na pasta:
+
+GAVIME_final/
+
+## Status
+Projeto finalizado.
