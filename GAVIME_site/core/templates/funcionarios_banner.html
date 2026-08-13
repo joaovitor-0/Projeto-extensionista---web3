@@ -1,0 +1,410 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+	<head>
+
+		<title>GAVIME - Banners</title>
+
+		<meta charset="UTF-8">
+
+		<link
+			rel="stylesheet"
+			href="{% static 'css/style.css' %}"
+		>
+
+		<link
+			rel="icon"
+			href="{% static 'img/icon.ico' %}"
+		>
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		>
+
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+		>
+
+	</head>
+
+	<body id="topo">
+
+		<header>
+
+			<div class="cabecalho">
+
+				<a href="/funcionarios/">
+
+					<img
+						src="{% static 'img/logoGavime.png' %}"
+						class="logo"
+						alt="Logo GAVIME"
+					>
+
+				</a>
+
+				<nav>
+
+					<a href="/funcionarios/">
+						Painel
+					</a>
+
+					<a href="/funcionarios/atividades/">
+						Ações
+					</a>
+
+					<a href="/funcionarios/inscritos/">
+						Inscritos
+					</a>
+
+					<a href="/funcionarios/voluntarios/">
+						Voluntários
+					</a>
+
+					<a href="/funcionarios/despesas/">
+						Transparência
+					</a>
+
+					<a href="/funcionarios/newsletter/">
+						Newsletter
+					</a>
+
+					<a href="{% url 'funcionarios_banner' %}">
+						Banners
+					</a>
+
+					<a href="/funcionarios/campanhas/">
+						Campanhas
+					</a>
+
+					<a href="/">
+						Site principal
+					</a>
+
+				</nav>
+
+			</div>
+
+		</header>
+
+		<section class="conteudo">
+
+			<div class="topoPainel">
+
+				<h1>
+					Gerenciar banners
+				</h1>
+
+			</div>
+
+			{% if messages %}
+
+				<div class="mensagensSistema">
+
+					{% for message in messages %}
+
+						<div class="mensagemSistema {{ message.tags }}">
+							{{ message }}
+						</div>
+
+					{% endfor %}
+
+				</div>
+
+			{% endif %}
+
+			<div class="areaTabelaFuncionarios">
+
+				<div class="cabecalhoAreaAdministrativa">
+
+					<div>
+
+						<h2>
+							Banners cadastrados
+						</h2>
+
+						<p>
+							Gerencie os banners que serão exibidos na página
+							principal do site.
+						</p>
+
+					</div>
+
+					<a
+						href="{% url 'funcionarios_banner_cadastrar' %}"
+						class="botaoCadastrarPainel"
+					>
+						Cadastrar banner
+					</a>
+
+				</div>
+
+				<form
+					method="GET"
+					class="formularioFiltrosTabela"
+				>
+
+					<input
+						type="text"
+						name="busca"
+						placeholder="Título do banner"
+						value="{{ busca }}"
+					>
+
+					<select name="status">
+
+						<option value="">
+							Todos os status
+						</option>
+
+						<option
+							value="ativos"
+							{% if status == "ativos" %}selected{% endif %}
+						>
+							Ativos
+						</option>
+
+						<option
+							value="inativos"
+							{% if status == "inativos" %}selected{% endif %}
+						>
+							Inativos
+						</option>
+
+					</select>
+
+					<button type="submit">
+						Filtrar
+					</button>
+
+					<a href="{% url 'funcionarios_banner' %}">
+						Limpar
+					</a>
+
+				</form>
+
+				<div class="tabelaContainer">
+
+					<table class="tabelaFuncionarios tabelaBanner">
+
+						<thead>
+
+							<tr>
+
+								<th>
+									Imagem
+								</th>
+
+								<th>
+									Título
+								</th>
+
+								<th>
+									Subtítulo
+								</th>
+
+								<th>
+									Status
+								</th>
+
+								<th>
+									Ordem
+								</th>
+
+								<th>
+									Ações
+								</th>
+
+							</tr>
+
+						</thead>
+
+						<tbody>
+
+							{% for banner in banners %}
+
+								<tr>
+
+									<td>
+
+										{% if banner.imagem %}
+
+											<img
+												src="{{ banner.imagem.url }}"
+												alt="{{ banner.titulo }}"
+												class="miniaturaBanner"
+											>
+
+										{% else %}
+
+											<span class="semImagemBanner">
+												Sem imagem
+											</span>
+
+										{% endif %}
+
+									</td>
+
+									<td>
+
+										<strong>
+											{{ banner.titulo }}
+										</strong>
+
+									</td>
+
+									<td>
+
+										{% if banner.subtitulo %}
+
+											{{ banner.subtitulo|truncatechars:100 }}
+
+										{% else %}
+
+											—
+
+										{% endif %}
+
+									</td>
+
+									<td>
+
+										{% if banner.ativo %}
+
+											<span class="statusBanner statusBannerAtivo">
+												Ativo
+											</span>
+
+										{% else %}
+
+											<span class="statusBanner statusBannerInativo">
+												Inativo
+											</span>
+
+										{% endif %}
+
+									</td>
+
+									<td>
+										{{ banner.ordem }}
+									</td>
+
+									<td>
+
+										<div class="acoesTabelaAdministrativa">
+
+											<a
+												href="{% url 'funcionarios_banner_editar' banner.id %}"
+												class="botaoEditarSelecionado botaoAcaoTabela"
+											>
+												Editar
+											</a>
+
+											<form
+												method="POST"
+												action="{% url 'funcionarios_banner_alterar_status' banner.id %}"
+											>
+
+												{% csrf_token %}
+
+												<button
+													type="submit"
+													class="botaoStatusAdministrativo"
+												>
+
+													{% if banner.ativo %}
+
+														Desativar
+
+													{% else %}
+
+														Ativar
+
+													{% endif %}
+
+												</button>
+
+											</form>
+
+											<form
+												method="POST"
+												action="{% url 'funcionarios_banner_excluir' banner.id %}"
+												onsubmit="return confirm('Deseja realmente excluir este banner?');"
+											>
+
+												{% csrf_token %}
+
+												<button
+													type="submit"
+													class="botaoExcluirSelecionado botaoAcaoTabela"
+												>
+													Excluir
+												</button>
+
+											</form>
+
+										</div>
+
+									</td>
+
+								</tr>
+
+							{% empty %}
+
+								<tr>
+
+									<td
+										colspan="6"
+										class="mensagemTabelaVazia"
+									>
+										Nenhum banner encontrado.
+									</td>
+
+								</tr>
+
+							{% endfor %}
+
+						</tbody>
+
+					</table>
+
+				</div>
+
+			</div>
+
+		</section>
+
+		<footer>
+
+			<div class="footerContainerFuncionarios">
+
+				<div class="footerLogo">
+
+					<a href="#topo">
+
+						<img
+							src="{% static 'img/logoGavime.png' %}"
+							class="logoFooter"
+							alt="Logo GAVIME"
+						>
+
+					</a>
+
+				</div>
+
+				<p class="direitos">
+					©2026 - GAVIME. Todos os direitos reservados.
+				</p>
+
+			</div>
+
+		</footer>
+
+	</body>
+
+</html>

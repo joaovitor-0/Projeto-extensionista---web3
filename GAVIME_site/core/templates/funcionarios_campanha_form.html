@@ -1,0 +1,504 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+	<head>
+
+		<title>GAVIME - {{ titulo_pagina }}</title>
+
+		<meta charset="UTF-8">
+
+		<link
+			rel="stylesheet"
+			href="{% static 'css/style.css' %}"
+		>
+
+		<link
+			rel="icon"
+			href="{% static 'img/icon.ico' %}"
+		>
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		>
+
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+		>
+
+	</head>
+
+	<body id="topo">
+
+		<header>
+
+			<div class="cabecalho">
+
+				<a href="/funcionarios/">
+
+					<img
+						src="{% static 'img/logoGavime.png' %}"
+						class="logo"
+						alt="Logo GAVIME"
+					>
+
+				</a>
+
+				<nav>
+
+					<a href="/funcionarios/">
+						Painel
+					</a>
+
+					<a href="/funcionarios/atividades/">
+						Ações
+					</a>
+
+					<a href="/funcionarios/inscritos/">
+						Inscritos
+					</a>
+
+					<a href="/funcionarios/voluntarios/">
+						Voluntários
+					</a>
+
+					<a href="/funcionarios/despesas/">
+						Transparência
+					</a>
+
+					<a href="/funcionarios/newsletter/">
+						Newsletter
+					</a>
+
+					<a href="/funcionarios/banners/">Banners</a>
+
+					<a href="/funcionarios/campanhas/">
+						Campanhas
+					</a>
+
+					<a href="/">
+						Site principal
+					</a>
+
+				</nav>
+
+			</div>
+
+		</header>
+
+		<section class="conteudo">
+
+			<div class="topoPainel">
+
+				<h1>
+					{{ titulo_pagina }}
+				</h1>
+
+			</div>
+
+			{% if messages %}
+
+				<div class="mensagensSistema">
+
+					{% for message in messages %}
+
+						<div class="mensagemSistema {{ message.tags }}">
+							{{ message }}
+						</div>
+
+					{% endfor %}
+
+				</div>
+
+			{% endif %}
+
+			<div class="areaTabelaFuncionarios">
+
+				<div class="cabecalhoAreaAdministrativa">
+
+					<div>
+
+						<h2>
+							Informações da campanha
+						</h2>
+
+						<p>
+							Preencha os dados da campanha de arrecadação que será
+							exibida no site.
+						</p>
+
+					</div>
+
+					<a
+						href="/funcionarios/campanhas/"
+						class="botaoVoltarPainel"
+					>
+						Voltar
+					</a>
+
+				</div>
+
+				<form
+					method="POST"
+					enctype="multipart/form-data"
+					class="formularioPagina formularioCampanhaPadrao"
+				>
+
+					{% csrf_token %}
+
+					{% if form.non_field_errors %}
+
+						<div class="errosFormulario">
+
+							{% for error in form.non_field_errors %}
+
+								<p>
+									{{ error }}
+								</p>
+
+							{% endfor %}
+
+						</div>
+
+					{% endif %}
+
+					<div class="campo">
+
+						<label for="{{ form.titulo.id_for_label }}">
+							{{ form.titulo.label }}
+						</label>
+
+						{{ form.titulo }}
+
+						{% for error in form.titulo.errors %}
+
+							<small class="erroCampo">
+								{{ error }}
+							</small>
+
+						{% endfor %}
+
+					</div>
+
+					<div class="campo">
+
+						<label for="{{ form.descricao.id_for_label }}">
+							{{ form.descricao.label }}
+						</label>
+
+						{{ form.descricao }}
+
+						{% for error in form.descricao.errors %}
+
+							<small class="erroCampo">
+								{{ error }}
+							</small>
+
+						{% endfor %}
+
+					</div>
+
+					<div class="campo">
+
+						<label for="{{ form.imagem.id_for_label }}">
+							{{ form.imagem.label }}
+						</label>
+
+						{{ form.imagem }}
+
+						{% if campanha and campanha.imagem %}
+
+							<div class="imagemCampanhaAtualPadrao">
+
+								<p>
+									Imagem atual:
+								</p>
+
+								<img
+									src="{{ campanha.imagem.url }}"
+									alt="{{ campanha.titulo }}"
+								>
+
+							</div>
+
+						{% endif %}
+
+						{% for error in form.imagem.errors %}
+
+							<small class="erroCampo">
+								{{ error }}
+							</small>
+
+						{% endfor %}
+
+					</div>
+
+					<div class="linhaFormularioAdministrativo">
+
+						<div class="campo">
+
+							<label for="{{ form.meta.id_for_label }}">
+								{{ form.meta.label }}
+							</label>
+
+							{{ form.meta }}
+
+							{% if form.meta.help_text %}
+
+								<small class="ajudaCampo">
+									{{ form.meta.help_text }}
+								</small>
+
+							{% endif %}
+
+							{% for error in form.meta.errors %}
+
+								<small class="erroCampo">
+									{{ error }}
+								</small>
+
+							{% endfor %}
+
+						</div>
+
+						<div class="campo">
+
+							<label for="{{ form.valor_arrecadado.id_for_label }}">
+								{{ form.valor_arrecadado.label }}
+							</label>
+
+							{{ form.valor_arrecadado }}
+
+							{% if form.valor_arrecadado.help_text %}
+
+								<small class="ajudaCampo">
+									{{ form.valor_arrecadado.help_text }}
+								</small>
+
+							{% endif %}
+
+							{% for error in form.valor_arrecadado.errors %}
+
+								<small class="erroCampo">
+									{{ error }}
+								</small>
+
+							{% endfor %}
+
+						</div>
+
+					</div>
+
+					<div class="campo">
+
+						<label for="{{ form.texto_meta.id_for_label }}">
+							{{ form.texto_meta.label }}
+						</label>
+
+						{{ form.texto_meta }}
+
+						{% if form.texto_meta.help_text %}
+
+							<small class="ajudaCampo">
+								{{ form.texto_meta.help_text }}
+							</small>
+
+						{% endif %}
+
+						{% for error in form.texto_meta.errors %}
+
+							<small class="erroCampo">
+								{{ error }}
+							</small>
+
+						{% endfor %}
+
+					</div>
+
+					<div class="linhaFormularioAdministrativo">
+
+						<div class="campo">
+
+							<label for="{{ form.link.id_for_label }}">
+								{{ form.link.label }}
+							</label>
+
+							{{ form.link }}
+
+							{% for error in form.link.errors %}
+
+								<small class="erroCampo">
+									{{ error }}
+								</small>
+
+							{% endfor %}
+
+						</div>
+
+						<div class="campo">
+
+							<label for="{{ form.texto_botao.id_for_label }}">
+								{{ form.texto_botao.label }}
+							</label>
+
+							{{ form.texto_botao }}
+
+							{% for error in form.texto_botao.errors %}
+
+								<small class="erroCampo">
+									{{ error }}
+								</small>
+
+							{% endfor %}
+
+						</div>
+
+					</div>
+
+					<div class="linhaFormularioAdministrativo">
+
+						<div class="campo">
+
+							<label for="{{ form.data_inicio.id_for_label }}">
+								{{ form.data_inicio.label }}
+							</label>
+
+							{{ form.data_inicio }}
+
+							{% for error in form.data_inicio.errors %}
+
+								<small class="erroCampo">
+									{{ error }}
+								</small>
+
+							{% endfor %}
+
+						</div>
+
+						<div class="campo">
+
+							<label for="{{ form.data_fim.id_for_label }}">
+								{{ form.data_fim.label }}
+							</label>
+
+							{{ form.data_fim }}
+
+							{% for error in form.data_fim.errors %}
+
+								<small class="erroCampo">
+									{{ error }}
+								</small>
+
+							{% endfor %}
+
+						</div>
+
+					</div>
+
+					<div class="campo">
+
+						<label for="{{ form.ordem.id_for_label }}">
+							{{ form.ordem.label }}
+						</label>
+
+						{{ form.ordem }}
+
+						{% if form.ordem.help_text %}
+
+							<small class="ajudaCampo">
+								{{ form.ordem.help_text }}
+							</small>
+
+						{% endif %}
+
+						{% for error in form.ordem.errors %}
+
+							<small class="erroCampo">
+								{{ error }}
+							</small>
+
+						{% endfor %}
+
+					</div>
+
+					<div class="opcoesAdministrativas">
+
+						<label class="campoCheckboxAdministrativo">
+
+							{{ form.ativa }}
+
+							<span>
+								Exibir esta campanha no site
+							</span>
+
+						</label>
+
+						<label class="campoCheckboxAdministrativo">
+
+							{{ form.concluida }}
+
+							<span>
+								Marcar campanha como concluída
+							</span>
+
+						</label>
+
+					</div>
+
+					<div class="botoesFormularioAdministrativo">
+
+						<button
+							type="submit"
+							class="botaoEnviar"
+						>
+							{{ texto_botao }}
+						</button>
+
+						<a
+							href="/funcionarios/campanhas/"
+							class="botaoCancelarPainel"
+						>
+							Cancelar
+						</a>
+
+					</div>
+
+				</form>
+
+			</div>
+
+		</section>
+
+		<footer>
+
+			<div class="footerContainerFuncionarios">
+
+				<div class="footerLogo">
+
+					<a href="#topo">
+
+						<img
+							src="{% static 'img/logoGavime.png' %}"
+							class="logoFooter"
+							alt="Logo GAVIME"
+						>
+
+					</a>
+
+				</div>
+
+				<p class="direitos">
+					©2026 - GAVIME. Todos os direitos reservados.
+				</p>
+
+			</div>
+
+		</footer>
+
+	</body>
+
+</html>

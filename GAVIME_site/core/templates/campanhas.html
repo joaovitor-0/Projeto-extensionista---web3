@@ -1,0 +1,279 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Campanhas Solidárias | GAVIME</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+	<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+	>
+
+</head>
+
+<body id="topo">
+
+    <header>
+
+        <div class="cabecalho">
+
+            <a href="{% url 'index' %}">
+
+                <img
+                    src="{% static 'img/logoGavime.png' %}"
+                    alt="Logo da GAVIME"
+                    class="logo"
+                >
+
+            </a>
+
+            <nav>
+                <div class = 'linksMenu'>
+						<a href = "/">Início</a>
+                        <a href="/campanhas/">Campanhas</a>
+						<a href = "/transparencia/">Transparência</a>
+						<a href = "/contato/">Contato</a>
+					</div>
+					<div class = 'acoesMenu'>
+						<a href = "/doacoes/" class = "botaoMenu">Doações</a>
+						<a href = "/inscricao/" class = "botaoMenu">Seja Voluntário</a>
+					</div>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <section class="secaoCampanhas">
+
+            <div class="conteudo">
+
+                <div class="cabecalhoCampanhasPublicas">
+
+                    <span class="subtituloCampanhas">
+                        Acompanhe nossas ações
+                    </span>
+
+                    <h1>
+                        Campanhas solidárias
+                    </h1>
+
+                    <p>
+                        Conheça as campanhas realizadas pela GAVIME e acompanhe
+                        o progresso de cada iniciativa.
+                    </p>
+
+                </div>
+
+                {% if campanhas %}
+
+                    <div class="gradeCampanhas">
+
+                        {% for campanha in campanhas %}
+
+                            <article class="cardCampanha">
+
+                                {% if campanha.imagem %}
+
+                                    <div class="imagemCampanha">
+
+                                        <img
+                                            src="{{ campanha.imagem.url }}"
+                                            alt="{{ campanha.titulo }}"
+                                        >
+
+                                        {% if campanha.concluida %}
+
+                                            <span class="seloCampanhaConcluida">
+                                                Campanha concluída
+                                            </span>
+
+                                        {% endif %}
+
+                                    </div>
+
+                                {% endif %}
+
+                                <div class="conteudoCardCampanha">
+
+                                    <h2>
+                                        {{ campanha.titulo }}
+                                    </h2>
+
+                                    <p class="descricaoCampanha">
+                                        {{ campanha.descricao|linebreaksbr }}
+                                    </p>
+
+                                    <div class="informacoesProgressoCampanha">
+
+                                        <div class="linhaProgressoCampanha">
+
+                                            <span>
+                                                Progresso
+                                            </span>
+
+                                            <strong>
+                                                {{ campanha.percentual_real }}%
+                                            </strong>
+
+                                        </div>
+
+                                        <div
+                                            class="barraProgressoCampanha"
+                                            role="progressbar"
+                                            aria-label="Progresso da campanha {{ campanha.titulo }}"
+                                            aria-valuenow="{{ campanha.percentual }}"
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                        >
+
+                                            <div
+                                                class="preenchimentoProgressoCampanha"
+                                                style="width:{{ campanha.percentual|stringformat:'s' }}%;"
+                                            ></div>
+
+                                        </div>
+
+                                        <div class="valoresCampanha">
+
+                                            <div>
+
+                                                <span>
+                                                    Alcançado
+                                                </span>
+
+                                                <strong>
+                                                    R$ {{ campanha.valor_arrecadado|floatformat:2 }}
+                                                </strong>
+
+                                            </div>
+
+                                            <div>
+
+                                                <span>
+                                                    Meta
+                                                </span>
+
+                                                <strong>
+                                                    R$ {{ campanha.meta|floatformat:2 }}
+                                                </strong>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    {% if campanha.texto_meta %}
+
+                                        <p class="textoMetaCampanha">
+                                            {{ campanha.texto_meta }}
+                                        </p>
+
+                                    {% endif %}
+
+                                    {% if campanha.data_fim %}
+
+                                        <p class="dataCampanha">
+
+                                            Encerramento:
+
+                                            <strong>
+                                                {{ campanha.data_fim|date:"d/m/Y" }}
+                                            </strong>
+
+                                        </p>
+
+                                    {% endif %}
+
+                                    {% if campanha.link %}
+
+                                        <a
+                                            href="{{ campanha.link }}"
+                                            class="botaoCampanha"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {{ campanha.texto_botao|default:"Saiba mais" }}
+                                        </a>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </article>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <div class="mensagemSemCampanhas">
+
+                        <h2>
+                            Nenhuma campanha disponível
+                        </h2>
+
+                        <p>
+                            No momento, não há campanhas solidárias publicadas.
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+			<div class="footerContainer">
+				<div class="footerLogo">
+					<a href="#topo">
+						<img src="{% static 'img/logoGavime.png' %}" class="logoFooter" alt="Logo GAVIME">
+					</a>
+				</div>
+
+				<p class="direitos">
+					©2026 - GAVIME. Todos os direitos reservados.
+					<br>
+					CNPJ: 44.578.747/0001-05
+					<br>
+					<a href = "/funcionarios/" class="linkFuncionarios">
+						Área dos funcionários
+					</a>
+				</p>
+
+				<div class="redes">
+					<a href="https://www.facebook.com/p/Gavime-grupo-de-apoio-viver-melhor-100075482454614/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+					<a href="https://www.instagram.com/gavime.ong/reels/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+					<a href="https://www.threads.com/@gavime.ong" target="_blank"><i class="fa-brands fa-threads"></i></a>
+				</div>
+
+			</div>
+		</footer>
+
+</body>
+
+</html>
